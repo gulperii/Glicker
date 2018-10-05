@@ -3,6 +3,10 @@ package tr.org.yga.glicker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+
+import java.net.URL;
+
 import tr.org.yga.glicker.Api.ApiClient;
 import tr.org.yga.glicker.Api.ApiInterface;
 
@@ -15,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-           }
+        RetrievePhotos retrievePhotos = new RetrievePhotos(apiService);
+        glideDownload(retrievePhotos);
+    }
+
+    public void glideDownload ( RetrievePhotos retrievePhotos){
+        for (String url : retrievePhotos.getUrlList())
+            Glide.with(this).load(url).into(imageView);
+
+    }
 }
+
 

@@ -1,5 +1,10 @@
 package tr.org.yga.glicker;
 
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,13 +20,25 @@ import tr.org.yga.glicker.Response.Response;
 public class RetrievePhotos {
     String method_inter = "flickr.interestingness.getList";
     String method_info = "flickr.photos.getInfo";
-    List<PhotoItem> photoItems;
-    ApiInterface apiService;
-    List<URL> urlList;
+    private List<PhotoItem> photoItems;
+    private ApiInterface apiService;
+    private List<String> urlList;
 
     public RetrievePhotos(ApiInterface apiService) {
         apiService = this.apiService;
 
+    }
+
+    public List<PhotoItem> getPhotoItems() {
+        return photoItems;
+    }
+
+    public ApiInterface getApiService() {
+        return apiService;
+    }
+
+    public List<String> getUrlList() {
+        return urlList;
     }
 
     public void requestListFromAPI() {
@@ -42,19 +59,20 @@ public class RetrievePhotos {
 
     public void constructURLs(List<PhotoItem> photoIds) {
 // URL format : https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-       for(PhotoItem photoItem: photoItems){
-           String constructedUrl = "https://farm"+photoItem.getFarm()+".staticflickr.com/"+photoItem.getServer()+"/"+photoItem.getId()+"_"+photoItem.getSecret()+".jpg";
-           try {
-               URL constructedUrlObject= new URL(constructedUrl);
-               urlList.add(constructedUrlObject);
-           } catch (MalformedURLException e) {
-               e.printStackTrace();
-           }
-
-       }
+        for (PhotoItem photoItem : photoItems) {
+            String constructedUrl = "https://farm" + photoItem.getFarm() + ".staticflickr.com/" + photoItem.getServer() + "/" + photoItem.getId() + "_" + photoItem.getSecret() + ".jpg";
+             urlList.add(constructedUrl);
+        }
     }
 
+
 }
+/*
+    String imgUrl = "https://api.androidhive.info/images/glide/medium/deadpool.jpg";
+
+    ImageView imageView = (ImageView) view.findViewById(R.id.thumbnail);
+
+
 
 
 
