@@ -20,14 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         RetrievePhotos retrievePhotos = new RetrievePhotos(apiService);
-        glideDownload(retrievePhotos);
     }
 
-    public void glideDownload ( RetrievePhotos retrievePhotos){
-        for (String url : retrievePhotos.getUrlList())
-            Glide.with(this).load(url).into(imageView);
 
-    }
 }
 
 
