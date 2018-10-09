@@ -26,8 +26,12 @@ public class RetrievePhotos {
     public RetrievePhotos(ApiInterface apiService) {
 
         requestListFromAPI(apiService);
-
+/*    for (PhotoItem photoItem : photoItems) {
+        requestPhotoInfo(apiService, photoItem);
     }
+    constructURLs(photoItems);
+*/
+}
 
     public List<PhotoItem> getPhotoItems() {
         return photoItems;

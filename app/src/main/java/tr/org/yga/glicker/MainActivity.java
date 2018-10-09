@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         ImageView iv= findViewById(R.id.thumbnail);
         images = retrievePhotos.getPhotoListItemList();
+
+
         Glide.with(this).load(images.get(0).getUrl()).
                 thumbnail(0.5f).
                 transition(withCrossFade()).
