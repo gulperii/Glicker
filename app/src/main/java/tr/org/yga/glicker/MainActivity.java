@@ -32,24 +32,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         RetrievePhotos retrievePhotos = new RetrievePhotos(apiService);
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        ImageView iv= findViewById(R.id.thumbnail);
         images = retrievePhotos.getPhotoListItemList();
-
-
-        Glide.with(this).load(images.get(0).getUrl()).
-                thumbnail(0.5f).
-                transition(withCrossFade()).
-                into(iv);
-
-        /*
         mAdapter = new MyAdapter(getApplicationContext(), images);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-*/
+
 
     }
 

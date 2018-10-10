@@ -47,7 +47,7 @@ public class RetrievePhotos {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 photoItems = response.body().getPhotos().getPhoto();
-               //TODO: Normalde bu constructordaydı ama on response ı beklemediği için buraya aldım :(
+               //TODO: Normalde bu constructordaydı ama on response
                 for (PhotoItem photoItem : photoItems) {
                     requestPhotoInfo(apiService, photoItem);
                 }
