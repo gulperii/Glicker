@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 images = response.body().getPhotos().getPhoto();
                 generateDataList(response.body().getPhotos().getPhoto());
-
+progressDoalog.dismiss();
 
             }
 
