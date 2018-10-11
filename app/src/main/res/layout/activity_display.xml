@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical"
+    android:weightSum="100">
 
     <ImageView
-        android:id="@+id/image_preview"
+        android:id="@+id/image_with_content"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_centerInParent="true"
-        android:scaleType="fitCenter"
-        android:contentDescription="@string/Fotoğraf" />
+        android:layout_height="0dp"
+        android:layout_weight="75"
+        android:contentDescription="@string/Fotoğraf"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/content_display"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
+        android:id="@+id/image_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
         android:text="@string/Content"
-        android:textSize="15sp" />
+        android:textSize="20sp"
+        android:textColor="#FFFF"
+        />
 
-</RelativeLayout>
+</LinearLayout>
