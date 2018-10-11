@@ -16,34 +16,29 @@ import java.util.List;
 import tr.org.yga.glicker.DisplayActivity;
 import tr.org.yga.glicker.PhotoListItem;
 import tr.org.yga.glicker.R;
+import tr.org.yga.glicker.Response.PhotoItem;
+import tr.org.yga.glicker.Response.Photos;
+import tr.org.yga.glicker.Response.Response;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<PhotoListItem> images;
+    private List<PhotoItem> images;
     private Context mContext;
 
-    public MyAdapter(Context context, List<PhotoListItem> images) {
+    public MyAdapter(Context context, List<PhotoItem> images) {
         mContext = context;
         this.images = images;
 
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
 
-        public MyViewHolder(View view, Context context, List<PhotoListItem> images) {
+        public MyViewHolder(View view, Context context, List<PhotoItem> images) {
             super(view);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            view.setOnClickListener(this);
             mContext = context;
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(mContext, DisplayActivity.class);
-            intent.putExtra("image_id", images.indexOf(getAdapterPosition()));
-            mContext.startActivity(intent);
         }
     }
 
@@ -59,8 +54,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        PhotoListItem image = images.get(position);
-        Glide.with(mContext).load(image.getUrl()).
+        PhotoItem image = images.get(position);
+        String constructedUrl = "https://farm" + image.getFarm() + ".staticflickr.com/" + image.getServer() + "/" + image.getId() + "_" + image.getSecret() + ".jpg";
+
+        Glide.with(mContext).load(constructedUrl).
                 thumbnail(0.5f).
                 transition(withCrossFade()).
                 into(holder.thumbnail);
