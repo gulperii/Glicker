@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 images = response.body().getPhotos().getPhoto();
-                generateDataList(response.body().getPhotos().getPhoto());
+                images.size();
+                generateDataList(images);
 progressDoalog.dismiss();
 
             }
@@ -66,6 +67,7 @@ progressDoalog.dismiss();
         private void generateDataList(List<PhotoItem> images) {
             recyclerView = findViewById(R.id.recyclerView);
             mAdapter = new MyAdapter(getApplicationContext(), images);
+            //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(mAdapter);
