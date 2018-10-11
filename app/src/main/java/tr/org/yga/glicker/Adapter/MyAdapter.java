@@ -3,11 +3,14 @@ package tr.org.yga.glicker.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -37,11 +40,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
         TextView image_content;
+        RelativeLayout parentLayout;
 
         public MyViewHolder(View view, Context context, List<PhotoItem> images) {
             super(view);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             mContext = context;
+            parentLayout = view.findViewById(R.id.album_layout);
         }
     }
 
@@ -56,15 +61,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         PhotoItem image = images.get(position);
-        String constructedUrl = "https://farm" + image.getFarm() + ".staticflickr.com/" + image.getServer() + "/" + image.getId() + "_" + image.getSecret() + ".jpg";
-
+        final String constructedUrl = "https://farm" + image.getFarm() + ".staticflickr.com/" + image.getServer() + "/" + image.getId() + "_" + image.getSecret() + ".jpg";
         Glide.with(mContext).load(constructedUrl).
                 thumbnail(0.5f).
                 transition(withCrossFade()).
                 into(holder.thumbnail);
-
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, DisplayActivity.class);
+                String id = images.get(position).getId();
+                intent.putExtra("image_id", id);
+                intent.putExtra("image_url", constructedUrl);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
