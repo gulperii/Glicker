@@ -44,9 +44,10 @@ public class DisplayActivity extends AppCompatActivity {
             getPhotoInfo.enqueue(new Callback<Response>() {
                 @Override
                 public void onResponse(Call<tr.org.yga.glicker.PhotoInfo.Response> call, retrofit2.Response<tr.org.yga.glicker.PhotoInfo.Response> response) {
-                    String content = response.body().getPhoto().getDescription().getContent();
-                   progressDoalog.dismiss();
-                    setImage(content,imageUrl);
+                    String content = response.body().getPhoto().getTitle().getContent();
+
+                 setImage(content,imageUrl);
+                 progressDoalog.dismiss();
                 }
 
                 @Override
