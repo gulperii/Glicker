@@ -3,6 +3,7 @@ package tr.org.yga.glicker;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class DisplayActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<tr.org.yga.glicker.PhotoInfo.Response> call, retrofit2.Response<tr.org.yga.glicker.PhotoInfo.Response> response) {
                     String content = response.body().getPhoto().getDescription().toString();
-content=content.substring(content.indexOf("=")+1);
+content=content.substring(content.indexOf("=")+1,content.indexOf("}"));
                  setImage(content,imageUrl);
                  progressDoalog.dismiss();
                 }
@@ -63,6 +64,9 @@ content=content.substring(content.indexOf("=")+1);
     private void setImage(String imageContent, String imageUrl) {
         Log.d(TAG, "setImage: setting te image and name to widgets.");
         TextView content = findViewById(R.id.image_content);
+        content.setMovementMethod(new ScrollingMovementMethod());
+
+
         content.setText(imageContent);
 
         ImageView image = findViewById(R.id.image_with_content);

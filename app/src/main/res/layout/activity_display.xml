@@ -22,9 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
-        android:text="@string/Content"
         android:textSize="14sp"
         android:textColor="#FFFF"
+        android:scrollbars = "vertical"
+        android:layout_marginRight="10dp"
         />
 
 </LinearLayout>
