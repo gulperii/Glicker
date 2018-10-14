@@ -2,9 +2,9 @@ package tr.org.yga.glicker.PhotoInfo;
 
 public class Dates{
 	private String taken;
-	private int takengranularity;
+	private String takengranularity;
 	private String lastupdate;
-	private int takenunknown;
+	private String takenunknown;
 	private String posted;
 
 	public void setTaken(String taken){
@@ -15,11 +15,11 @@ public class Dates{
 		return taken;
 	}
 
-	public void setTakengranularity(int takengranularity){
+	public void setTakengranularity(String takengranularity){
 		this.takengranularity = takengranularity;
 	}
 
-	public int getTakengranularity(){
+	public String getTakengranularity(){
 		return takengranularity;
 	}
 
@@ -31,11 +31,11 @@ public class Dates{
 		return lastupdate;
 	}
 
-	public void setTakenunknown(int takenunknown){
+	public void setTakenunknown(String takenunknown){
 		this.takenunknown = takenunknown;
 	}
 
-	public int getTakenunknown(){
+	public String getTakenunknown(){
 		return takenunknown;
 	}
 

@@ -1,21 +1,18 @@
 package tr.org.yga.glicker.PhotoInfo;
 
 public class Description{
-	private String content;
+	private String _content;
 
-	public void setContent(String content){
-		this.content = content;
-	}
 
 	public String getContent(){
-		return content;
+		return _content;
 	}
 
 	@Override
  	public String toString(){
 		return 
 			"Description{" + 
-			"_content = '" + content + '\'' + 
+			"_content = '" + _content + '\'' +
 			"}";
 		}
 }

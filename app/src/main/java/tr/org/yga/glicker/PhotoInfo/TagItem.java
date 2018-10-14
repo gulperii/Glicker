@@ -2,7 +2,7 @@ package tr.org.yga.glicker.PhotoInfo;
 
 public class TagItem{
 	private String author;
-	private String machineTag;
+	private int machineTag;
 	private String authorname;
 	private String raw;
 	private String id;
@@ -16,11 +16,11 @@ public class TagItem{
 		return author;
 	}
 
-	public void setMachineTag(String machineTag){
+	public void setMachineTag(int machineTag){
 		this.machineTag = machineTag;
 	}
 
-	public String getMachineTag(){
+	public int getMachineTag(){
 		return machineTag;
 	}
 

@@ -3,7 +3,7 @@ package tr.org.yga.glicker.PhotoInfo;
 public class Owner{
 	private String nsid;
 	private int iconfarm;
-	private String pathAlias;
+	private Object pathAlias;
 	private String iconserver;
 	private String location;
 	private String username;
@@ -25,11 +25,11 @@ public class Owner{
 		return iconfarm;
 	}
 
-	public void setPathAlias(String pathAlias){
+	public void setPathAlias(Object pathAlias){
 		this.pathAlias = pathAlias;
 	}
 
-	public String getPathAlias(){
+	public Object getPathAlias(){
 		return pathAlias;
 	}
 

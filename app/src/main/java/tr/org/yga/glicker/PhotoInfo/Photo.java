@@ -8,7 +8,7 @@ public class Photo{
 	private Notes notes;
 	private Visibility visibility;
 	private Publiceditability publiceditability;
-	private int safetyLevel;
+	private String safetyLevel;
 	private int rotation;
 	private Usage usage;
 	private Description description;
@@ -18,7 +18,7 @@ public class Photo{
 	private Title title;
 	private People people;
 	private Tags tags;
-	private int license;
+	private String license;
 	private Urls urls;
 	private Editability editability;
 	private int farm;
@@ -82,11 +82,11 @@ public class Photo{
 		return publiceditability;
 	}
 
-	public void setSafetyLevel(int safetyLevel){
+	public void setSafetyLevel(String safetyLevel){
 		this.safetyLevel = safetyLevel;
 	}
 
-	public int getSafetyLevel(){
+	public String getSafetyLevel(){
 		return safetyLevel;
 	}
 
@@ -162,11 +162,11 @@ public class Photo{
 		return tags;
 	}
 
-	public void setLicense(int license){
+	public void setLicense(String license){
 		this.license = license;
 	}
 
-	public int getLicense(){
+	public String getLicense(){
 		return license;
 	}
 
