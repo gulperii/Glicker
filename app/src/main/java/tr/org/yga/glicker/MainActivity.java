@@ -69,13 +69,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int position) {
                 // TODO: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
-
-                Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+                String constructedUrl = "https://farm" +  images.get(position).getFarm() + ".staticflickr.com/" +  images.get(position).getServer() + "/" +  images.get(position).getId() + "_" +  images.get(position).getSecret() + ".jpg";
                 String id = images.get(position).getId();
-                intent.putExtra("image_id", id);
-                intent.putExtra("image_url", images.get(position));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+
             }
         });
         //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);

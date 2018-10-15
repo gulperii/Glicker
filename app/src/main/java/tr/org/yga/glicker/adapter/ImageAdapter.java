@@ -20,7 +20,7 @@ import tr.org.yga.glicker.interestingPhotos.PhotoItem;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
-public class ImageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
     private final ItemClickEvent itemClickEvent;
     private List<PhotoItem> images;

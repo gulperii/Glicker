@@ -18,7 +18,7 @@ public class ImageViewHolder extends RecyclerView.ViewHolder{
         public ImageView thumbnail;
         // DONE: 15.10.2018 degıskenler camelCase olaacaaaaaaak
         TextView imageContent;
-        RelativeLayout parentLayout;
+        public RelativeLayout parentLayout;
         Context context;
         // TODO: 15.10.2018  Burası da databındıng
         public ImageViewHolder(View view, Context context, List<PhotoItem> images) {
