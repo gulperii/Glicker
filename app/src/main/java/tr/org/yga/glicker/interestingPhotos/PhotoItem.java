@@ -1,4 +1,4 @@
-package tr.org.yga.glicker.Response;
+package tr.org.yga.glicker.interestingPhotos;
 
 public class PhotoItem{
 	// TODO: 15.10.2018 json parse ıcın moshı ya da gson kullan

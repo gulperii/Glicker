@@ -1,4 +1,4 @@
-package tr.org.yga.glicker.Api;
+package tr.org.yga.glicker.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

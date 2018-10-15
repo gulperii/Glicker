@@ -1,14 +1,10 @@
 package tr.org.yga.glicker;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-// TODO: 15.10.2018 Optimize imports
-/**
- * Created by Lincoln on 05/04/16.
- */
+
+
 class SquareLayout extends RelativeLayout {
 
     public SquareLayout(Context context) {

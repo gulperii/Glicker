@@ -1,4 +1,4 @@
-package tr.org.yga.glicker.Response;
+package tr.org.yga.glicker.interestingPhotos;
 
 public class Response{
 	private String stat;
@@ -15,7 +15,7 @@ public class Response{
 	@Override
  	public String toString(){
 		return 
-			"Response{" + 
+			"interestingPhotos{" +
 			"stat = '" + stat + '\'' + 
 			",photos = '" + photos + '\'' + 
 			"}";

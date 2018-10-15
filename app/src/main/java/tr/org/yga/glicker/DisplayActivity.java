@@ -1,8 +1,8 @@
 package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.ImageView;
@@ -12,12 +12,12 @@ import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import tr.org.yga.glicker.Api.ApiClient;
-import tr.org.yga.glicker.Api.ApiInterface;
-import tr.org.yga.glicker.PhotoInfo.Response;
+import tr.org.yga.glicker.api.ApiClient;
+import tr.org.yga.glicker.api.ApiInterface;
+import tr.org.yga.glicker.photoInfo.Response;
 
 public class DisplayActivity extends AppCompatActivity {
-    private ProgressDialog progressDoalog;
+    private ProgressDialog progressDialog;
     private static final String TAG = "DisplayActivity";
     ImageView imageView;
     TextView textView;
@@ -27,11 +27,11 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         Log.d(TAG, "onCreate: started");
-        progressDoalog = new ProgressDialog(DisplayActivity.this);
-        progressDoalog.setMessage("Loading....");
-        progressDoalog.show();
+        progressDialog = new ProgressDialog(DisplayActivity.this);
+        progressDialog.setMessage("Loading....");
+        progressDialog.show();
         getIncomingIntent();
-            }
+    }
 
     private void getIncomingIntent() {
 
@@ -44,16 +44,15 @@ public class DisplayActivity extends AppCompatActivity {
             Call<Response> getPhotoInfo = apiService_2_2.photoInfo("flickr.photos.getInfo", "d475314235e52c86ab300fcb4f6501db", imageId, "json", "1");
             getPhotoInfo.enqueue(new Callback<Response>() {
                 @Override
-                public void onResponse(Call<tr.org.yga.glicker.PhotoInfo.Response> call, retrofit2.Response<tr.org.yga.glicker.PhotoInfo.Response> response) {
+                public void onResponse(Call<tr.org.yga.glicker.photoInfo.Response> call, retrofit2.Response<tr.org.yga.glicker.photoInfo.Response> response) {
                     String content = response.body().getPhoto().getDescription().toString();
-content=content.substring(content.indexOf("=")+1,content.indexOf("}"));
-                 setImage(content,imageUrl);
-                    // TODO: 15.10.2018 typooooooo
-                 progressDoalog.dismiss();
+                    content = content.substring(content.indexOf("=") + 1, content.indexOf("}"));
+                    setImage(content, imageUrl);
+                    progressDialog.dismiss();
                 }
 
                 @Override
-                public void onFailure(Call<tr.org.yga.glicker.PhotoInfo.Response> call, Throwable t) {
+                public void onFailure(Call<tr.org.yga.glicker.photoInfo.Response> call, Throwable t) {
                     t.printStackTrace();
                 }
             });
@@ -65,7 +64,7 @@ content=content.substring(content.indexOf("=")+1,content.indexOf("}"));
     // TODO: 15.10.2018 Metodun okunabılır olması ıcın comment ekle.
     private void setImage(String imageContent, String imageUrl) {
         Log.d(TAG, "setImage: setting te image and name to widgets.");
-        TextView content = findViewById(R.id.image_content);
+        TextView content = findViewById(R.id.imageContent);
         content.setMovementMethod(new ScrollingMovementMethod());
 
 

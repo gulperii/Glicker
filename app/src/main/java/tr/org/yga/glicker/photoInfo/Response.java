@@ -1,8 +1,8 @@
-package tr.org.yga.glicker.PhotoInfo;
+package tr.org.yga.glicker.photoInfo;
 
 public class Response{
 
-	// TODO: 15.10.2018 Response adında bır sey bırakma
+	// TODO: 15.10.2018 interestingPhotos adında bır sey bırakma
 	private String stat;
 	private Photo photo;
 
@@ -25,7 +25,7 @@ public class Response{
 	@Override
  	public String toString(){
 		return 
-			"Response{" + 
+			"interestingPhotos{" +
 			"stat = '" + stat + '\'' + 
 			",photo = '" + photo + '\'' + 
 			"}";

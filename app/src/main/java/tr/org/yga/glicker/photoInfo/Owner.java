@@ -1,4 +1,4 @@
-package tr.org.yga.glicker.PhotoInfo;
+package tr.org.yga.glicker.photoInfo;
 
 public class Owner{
 	private String nsid;

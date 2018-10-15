@@ -2,57 +2,43 @@ package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
-import tr.org.yga.glicker.Adapter.MyAdapter;
-import tr.org.yga.glicker.Api.ApiClient;
-import tr.org.yga.glicker.Api.ApiInterface;
-import tr.org.yga.glicker.Response.PhotoItem;
-import tr.org.yga.glicker.Response.Photos;
-import tr.org.yga.glicker.Response.Response;
-
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import tr.org.yga.glicker.adapter.ImageAdapter;
+import tr.org.yga.glicker.api.ApiClient;
+import tr.org.yga.glicker.api.ApiInterface;
+import tr.org.yga.glicker.interestingPhotos.PhotoItem;
+import tr.org.yga.glicker.interestingPhotos.Response;
 
 public class MainActivity extends AppCompatActivity {
-    // TODO: 15.10.2018 kullanılmayan degıskenlerı ve ımportları temızle (Optimize imports shortcut,ı kullanabilirsin)
-    String BASE_URL = " https://api.flickr.com/services";
+    // DONE: 15.10.2018 kullanılmayan degıskenlerı ve ımportları temızle
     private List<PhotoItem> images;
     // TODO: 15.10.2018 Isımlendirmeye dikkat 
-    private MyAdapter mAdapter;
+    private ImageAdapter mAdapter;
     private RecyclerView recyclerView;
-    private ProgressDialog progressDoalog;
+    private ProgressDialog progressDialog;
 
-    // TODO: 15.10.2018  
-    /**
-     * Paket ısımlerı ufak harfle baslasın
-     * databinding'e gecıleceeeeeek
-     * git ignore dosyası androide gore düzenlenecek.
-     */
+    //DONE: 15.10.2018 : Paket isimleri ufak harfle başlasın
+    //TODO: databinding e gecileceeeek
+    //TODO: git ignore dosyası androide göre düzenlenecek
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // TODO: 15.10.2018 typo 
-        progressDoalog = new ProgressDialog(MainActivity.this);
+        // DONE: 15.10.2018 typo
+        progressDialog = new ProgressDialog(MainActivity.this);
         // TODO: 15.10.2018 Hardcoded string bırakılmayaacaaak 
-        progressDoalog.setMessage("Loading....");
-        progressDoalog.show();
+        progressDialog.setMessage("Loading....");
+        progressDialog.show();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Response> interestingList = apiService.interestingList("flickr.interestingness.getList", "d475314235e52c86ab300fcb4f6501db", "json", "1");
         interestingList.enqueue(new Callback<Response>() {
@@ -62,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
                 images = response.body().getPhotos().getPhoto();
                 generateDataList(images);
-                progressDoalog.dismiss();
+                progressDialog.dismiss();
 
             }
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                progressDoalog.dismiss();
+                progressDialog.dismiss();
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
@@ -79,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         // TODO: 15.10.2018 lambda expression acılacaaaaak
-        mAdapter = new MyAdapter(getApplicationContext(), images, new MyAdapter.ItemClickEvent() {
+        mAdapter = new ImageAdapter(getApplicationContext(), images, new ImageAdapter.ItemClickEvent() {
             @Override
             public void onItemClicked(int position) {
                 // TODO: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende

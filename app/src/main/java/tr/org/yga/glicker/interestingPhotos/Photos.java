@@ -1,4 +1,4 @@
-package tr.org.yga.glicker.Response;
+package tr.org.yga.glicker.interestingPhotos;
 
 import java.util.List;
 
