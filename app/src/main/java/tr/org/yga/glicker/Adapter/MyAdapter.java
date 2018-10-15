@@ -26,22 +26,29 @@ import tr.org.yga.glicker.Response.Response;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
+// TODO: 15.10.2018 MyVıewHolder oooooolmmaaaaaaazz
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
+    private final ItemClickEvent itemClickEvent;
     private List<PhotoItem> images;
+    // TODO: 15.10.2018 Context gecmeye gerek yok
     private Context mContext;
 
-    public MyAdapter(Context context, List<PhotoItem> images) {
+    public MyAdapter(Context context, List<PhotoItem> images, ItemClickEvent itemClickEvent) {
         mContext = context;
         this.images = images;
+        this.itemClickEvent = itemClickEvent;
 
     }
 
+    // TODO: 15.10.2018 Bunu ayrı bır class olarak tanımla
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView thumbnail;
+        // TODO: 15.10.2018 degıskenler camelCase olaacaaaaaaak
         TextView image_content;
         RelativeLayout parentLayout;
 
+        // TODO: 15.10.2018  Burası da databındıng
         public MyViewHolder(View view, Context context, List<PhotoItem> images) {
             super(view);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
@@ -71,13 +78,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // TODO: 15.10.2018
                 // Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, DisplayActivity.class);
-                String id = images.get(position).getId();
-                intent.putExtra("image_id", id);
-                intent.putExtra("image_url", constructedUrl);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                mContext.startActivity(intent);
+                itemClickEvent.onItemClicked(position);
             }
         });
     }
@@ -94,4 +97,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     }
 */
+
+     public interface ItemClickEvent{
+         void onItemClicked(int position);
+     }
 }

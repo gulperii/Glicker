@@ -48,6 +48,7 @@ public class DisplayActivity extends AppCompatActivity {
                     String content = response.body().getPhoto().getDescription().toString();
 content=content.substring(content.indexOf("=")+1,content.indexOf("}"));
                  setImage(content,imageUrl);
+                    // TODO: 15.10.2018 typooooooo
                  progressDoalog.dismiss();
                 }
 
@@ -61,6 +62,7 @@ content=content.substring(content.indexOf("=")+1,content.indexOf("}"));
 
     }
 
+    // TODO: 15.10.2018 Metodun okunabılır olması ıcın comment ekle.
     private void setImage(String imageContent, String imageUrl) {
         Log.d(TAG, "setImage: setting te image and name to widgets.");
         TextView content = findViewById(R.id.image_content);

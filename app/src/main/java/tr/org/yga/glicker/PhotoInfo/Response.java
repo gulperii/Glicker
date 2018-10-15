@@ -1,6 +1,8 @@
 package tr.org.yga.glicker.PhotoInfo;
 
 public class Response{
+
+	// TODO: 15.10.2018 Response adında bır sey bırakma
 	private String stat;
 	private Photo photo;
 

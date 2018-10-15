@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-
+// TODO: 15.10.2018 Optimize imports
 /**
  * Created by Lincoln on 05/04/16.
  */

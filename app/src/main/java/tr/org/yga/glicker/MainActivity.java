@@ -1,6 +1,7 @@
 package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -29,17 +30,27 @@ import tr.org.yga.glicker.Response.Response;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 public class MainActivity extends AppCompatActivity {
+    // TODO: 15.10.2018 kullanılmayan degıskenlerı ve ımportları temızle (Optimize imports shortcut,ı kullanabilirsin)
     String BASE_URL = " https://api.flickr.com/services";
     private List<PhotoItem> images;
+    // TODO: 15.10.2018 Isımlendirmeye dikkat 
     private MyAdapter mAdapter;
     private RecyclerView recyclerView;
     private ProgressDialog progressDoalog;
 
+    // TODO: 15.10.2018  
+    /**
+     * Paket ısımlerı ufak harfle baslasın
+     * databinding'e gecıleceeeeeek
+     * git ignore dosyası androide gore düzenlenecek.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // TODO: 15.10.2018 typo 
         progressDoalog = new ProgressDialog(MainActivity.this);
+        // TODO: 15.10.2018 Hardcoded string bırakılmayaacaaak 
         progressDoalog.setMessage("Loading....");
         progressDoalog.show();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
@@ -64,9 +75,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void generateDataList(List<PhotoItem> images) {
+    private void generateDataList(final List<PhotoItem> images) {
+
         recyclerView = findViewById(R.id.recyclerView);
-        mAdapter = new MyAdapter(getApplicationContext(), images);
+        // TODO: 15.10.2018 lambda expression acılacaaaaak
+        mAdapter = new MyAdapter(getApplicationContext(), images, new MyAdapter.ItemClickEvent() {
+            @Override
+            public void onItemClicked(int position) {
+                // TODO: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
+
+                Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+                String id = images.get(position).getId();
+                intent.putExtra("image_id", id);
+                intent.putExtra("image_url", images.get(position));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
         //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);

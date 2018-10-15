@@ -1,6 +1,7 @@
 package tr.org.yga.glicker.Response;
 
 public class PhotoItem{
+	// TODO: 15.10.2018 json parse ıcın moshı ya da gson kullan
 	private String owner;
 	private String server;
 	private int ispublic;
