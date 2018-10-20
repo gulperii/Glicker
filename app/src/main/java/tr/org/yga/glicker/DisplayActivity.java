@@ -3,7 +3,6 @@ package tr.org.yga.glicker;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,8 +18,7 @@ import tr.org.yga.glicker.photoInfo.Response;
 public class DisplayActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "DisplayActivity";
-    ImageView imageView;
-    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +26,7 @@ public class DisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         Log.d(TAG, "onCreate: started");
         progressDialog = new ProgressDialog(DisplayActivity.this);
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage(getString(R.string.loading_warning));
         progressDialog.show();
         getIncomingIntent();
     }
@@ -61,13 +59,14 @@ public class DisplayActivity extends AppCompatActivity {
 
     }
 
-    // TODO: 15.10.2018 Metodun okunabılır olması ıcın comment ekle.
+    // DONE: 15.10.2018 Metodun okunabılır olması ıcın comment ekle.
+
+    /*
+    Seçilen fotoğrafı ve contentini ekrana bastırır.
+     */
     private void setImage(String imageContent, String imageUrl) {
-        Log.d(TAG, "setImage: setting te image and name to widgets.");
+        Log.d(TAG, "setImage: setting the image and name to widgets.");
         TextView content = findViewById(R.id.imageContent);
-        content.setMovementMethod(new ScrollingMovementMethod());
-
-
         content.setText(imageContent);
 
         ImageView image = findViewById(R.id.image_with_content);

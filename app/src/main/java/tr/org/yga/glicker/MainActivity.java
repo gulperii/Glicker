@@ -21,14 +21,14 @@ import tr.org.yga.glicker.interestingPhotos.Response;
 public class MainActivity extends AppCompatActivity {
     // DONE: 15.10.2018 kullanılmayan degıskenlerı ve ımportları temızle
     private List<PhotoItem> images;
-    // TODO: 15.10.2018 Isımlendirmeye dikkat 
-    private ImageAdapter mAdapter;
+    // DONE: 15.10.2018 Isımlendirmeye dikkat
+    private ImageAdapter imageAdapter;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
-
+//DONE: _ Merte haber verilecek
     //DONE: 15.10.2018 : Paket isimleri ufak harfle başlasın
     //TODO: databinding e gecileceeeek
-    //TODO: git ignore dosyası androide göre düzenlenecek
+    //DONE: git ignore dosyası androide göre düzenlenecek
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // DONE: 15.10.2018 typo
         progressDialog = new ProgressDialog(MainActivity.this);
-        // TODO: 15.10.2018 Hardcoded string bırakılmayaacaaak 
-        progressDialog.setMessage("Loading....");
+        // DONE: 15.10.2018 Hardcoded string bırakılmayaacaaak
+        progressDialog.setMessage(getString(R.string.loading_warning));
         progressDialog.show();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<Response> interestingList = apiService.interestingList("flickr.interestingness.getList", "d475314235e52c86ab300fcb4f6501db", "json", "1");
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, getString(R.string.loading_error), Toast.LENGTH_SHORT).show();
                 t.printStackTrace();
             }
         });
@@ -65,19 +65,24 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         // TODO: 15.10.2018 lambda expression acılacaaaaak
-        mAdapter = new ImageAdapter(getApplicationContext(), images, new ImageAdapter.ItemClickEvent() {
+        imageAdapter = new ImageAdapter(images, new ImageAdapter.ItemClickEvent() {
             @Override
             public void onItemClicked(int position) {
-                // TODO: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
+                // DONE: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
                 String constructedUrl = "https://farm" +  images.get(position).getFarm() + ".staticflickr.com/" +  images.get(position).getServer() + "/" +  images.get(position).getId() + "_" +  images.get(position).getSecret() + ".jpg";
                 String id = images.get(position).getId();
+                Intent intent = new Intent( getApplicationContext(), DisplayActivity.class);
+                intent.putExtra("image_id", id);
+                intent.putExtra("image_url", constructedUrl);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);
 
             }
         });
-        //RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(imageAdapter);
     }
 
 

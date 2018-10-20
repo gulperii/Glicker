@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Glicker</string>
-    <string name="Content">\"Content\"</string>
-    todo buradakı degıskenler de alt cızgılı tanımlanacak. Tanımlama tipi bulundugunda Mert'e haber edılecek
-    <string name="Fotoğraf">\"Foto\"</string>
+    <string name="content">\"Content\"</string>
+    <string name="photo">\"Foto\"</string>
+    <string name="loading_warning">Loading...</string>
+    <string name="loading_error">Something went wrong...Please try later!</string>
 </resources>
