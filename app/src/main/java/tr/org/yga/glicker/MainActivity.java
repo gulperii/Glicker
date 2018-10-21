@@ -2,6 +2,7 @@ package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
-//DONE: _ Merte haber verilecek
+     //DONE: _ Merte haber verilecek <<snake_case kebab-case>>
     //DONE: 15.10.2018 : Paket isimleri ufak harfle başlasın
     //TODO: databinding e gecileceeeek
     //DONE: git ignore dosyası androide göre düzenlenecek
@@ -44,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         interestingList.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-
-
                 images = response.body().getPhotos().getPhoto();
                 generateDataList(images);
                 progressDialog.dismiss();
@@ -69,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int position) {
                 // DONE: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
-                String constructedUrl = "https://farm" +  images.get(position).getFarm() + ".staticflickr.com/" +  images.get(position).getServer() + "/" +  images.get(position).getId() + "_" +  images.get(position).getSecret() + ".jpg";
+                String constructedUrl = "https://farm" + images.get(position).getFarm() + ".staticflickr.com/" + images.get(position).getServer() + "/" + images.get(position).getId() + "_" + images.get(position).getSecret() + ".jpg";
                 String id = images.get(position).getId();
-                Intent intent = new Intent( getApplicationContext(), DisplayActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayActivity.class);
                 intent.putExtra("image_id", id);
                 intent.putExtra("image_url", constructedUrl);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -21,19 +21,21 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     private final ItemClickEvent itemClickEvent;
     private List<PhotoItem> images;
     // DONE: 15.10.2018 Context gecmeye gerek yok
-    private Context mContext;
-    ImageViewHolder imageViewHolder;
+      ImageViewHolder imageViewHolder;
 
     public ImageAdapter(List<PhotoItem> images, ItemClickEvent itemClickEvent) {
+
+
         this.images = images;
         this.itemClickEvent = itemClickEvent;
     }
 
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        Context context=parent.getContext();
+        View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.adapter_album, parent, false);
-        imageViewHolder = new ImageViewHolder(itemView, mContext, images);
+        imageViewHolder = new ImageViewHolder(itemView, context, images);
         return imageViewHolder;
     }
 
@@ -48,7 +50,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: 15.10.2018
+                // DONE: 15.10.2018
 
                 itemClickEvent.onItemClicked(position);
             }
