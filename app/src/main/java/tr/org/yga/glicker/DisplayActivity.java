@@ -5,7 +5,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,8 +61,10 @@ public class DisplayActivity extends AppCompatActivity {
 
     private void setImage(String imageContent, String imageUrl) {
         Log.d(TAG, "setImage: setting the image and name to widgets.");
-        TextView content = findViewById(R.id.imageContent);
+       /* TextView content = findViewById(R.id.imageContent);
         content.setText(imageContent);
+        */
+       binding.setContent(imageContent);
         binding.setPhotoUrl(imageUrl);
 
     }

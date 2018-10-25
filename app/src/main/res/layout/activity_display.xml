@@ -4,11 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
             name="photoUrl"
-            type="java.lang.String"/>
+            type="java.lang.String" />
+
+        <variable
+            name="content"
+            type="java.lang.String" />
 
     </data>
 
@@ -27,7 +32,7 @@
             android:layout_weight="75"
             android:contentDescription="@string/photo"
             android:scaleType="centerCrop"
-            app:imageUrl="@{photoUrl}"/>
+            app:imageUrl="@{photoUrl}" />
         />
 
         <TextView
@@ -35,12 +40,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="15dp"
-            android:textSize="14sp"
+            android:scrollbars="vertical"
 
             android:textColor="#FFFF"
-            android:scrollbars="vertical"
-            android:layout_marginRight="10dp" />
+            android:textSize="14sp"
+            android:text="@{content}" />
 
     </LinearLayout>
 </layout>
