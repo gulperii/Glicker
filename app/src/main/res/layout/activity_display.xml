@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"xmlns:app="http://schemas.android.com/apk/res-auto">
-   <data>
-<variable
-    name="image"
-    type="com.stylingandroid.databinding.data.Status" />
 
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="photo"
+            type="tr.org.yga.glicker.interestingPhotos.PhotoItem" />
+        <variable
+            name="position"
+            type="java.lang.Integer" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
-    android:orientation="vertical"
-    android:weightSum="100">
 
-    <ImageView
-        android:id="@+id/image_with_content"
+    <LinearLayout
+        android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="75"
-        android:contentDescription="@string/photo"
-        android:scaleType="centerCrop"
-        />
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        android:orientation="vertical"
+        android:weightSum="100">
 
-    <TextView
-        android:id="@+id/imageContent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:textSize="14sp"
+        <ImageView
+            android:id="@+id/image_with_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="75"
+            android:contentDescription="@string/photo"
+            android:scaleType="centerCrop" />
 
-        android:textColor="#FFFF"
-        android:scrollbars = "vertical"
-        android:layout_marginRight="10dp"
-        />
+        <TextView
+            android:id="@+id/imageContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
 
-</LinearLayout>
+            android:textColor="#FFFF"
+            android:scrollbars="vertical"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
 </layout>

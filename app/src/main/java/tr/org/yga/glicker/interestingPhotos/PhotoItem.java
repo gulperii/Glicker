@@ -1,66 +1,74 @@
 package tr.org.yga.glicker.interestingPhotos;
 
-public class PhotoItem{
-	// TODO: 15.10.2018 json parse ıcın moshı ya da gson kullan
-	private String owner;
-	private String server;
-	private int ispublic;
-	private int isfriend;
-	private int farm;
-	private String id;
-	private String secret;
-	private String title;
-	private int isfamily;
+public class PhotoItem {
+    private String owner;
+    private String server;
+    private int ispublic;
+    private int isfriend;
+    private int farm;
+    private String id;
+    private String secret;
+    private String title;
+    private int isfamily;
+    private String imageUrl;
 
-	public String getOwner(){
-		return owner;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getServer(){
-		return server;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public int getIspublic(){
-		return ispublic;
-	}
+    public String getOwner() {
+        return owner;
+    }
 
-	public int getIsfriend(){
-		return isfriend;
-	}
+    public String getServer() {
+        return server;
+    }
 
-	public int getFarm(){
-		return farm;
-	}
+    public int getIspublic() {
+        return ispublic;
+    }
 
-	public String getId(){
-		return id;
-	}
+    public int getIsfriend() {
+        return isfriend;
+    }
 
-	public String getSecret(){
-		return secret;
-	}
+    public int getFarm() {
+        return farm;
+    }
 
-	public String getTitle(){
-		return title;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public int getIsfamily(){
-		return isfamily;
-	}
+    public String getSecret() {
+        return secret;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"PhotoItem{" + 
-			"owner = '" + owner + '\'' + 
-			",server = '" + server + '\'' + 
-			",ispublic = '" + ispublic + '\'' + 
-			",isfriend = '" + isfriend + '\'' + 
-			",farm = '" + farm + '\'' + 
-			",id = '" + id + '\'' + 
-			",secret = '" + secret + '\'' + 
-			",title = '" + title + '\'' + 
-			",isfamily = '" + isfamily + '\'' + 
-			"}";
-		}
+    public String getTitle() {
+        return title;
+    }
+
+    public int getIsfamily() {
+        return isfamily;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "PhotoItem{" +
+                        "owner = '" + owner + '\'' +
+                        ",server = '" + server + '\'' +
+                        ",ispublic = '" + ispublic + '\'' +
+                        ",isfriend = '" + isfriend + '\'' +
+                        ",farm = '" + farm + '\'' +
+                        ",id = '" + id + '\'' +
+                        ",secret = '" + secret + '\'' +
+                        ",title = '" + title + '\'' +
+                        ",isfamily = '" + isfamily + '\'' +
+                        "}";
+    }
 }

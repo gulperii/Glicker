@@ -2,7 +2,6 @@ package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,24 +19,15 @@ import tr.org.yga.glicker.interestingPhotos.PhotoItem;
 import tr.org.yga.glicker.interestingPhotos.Response;
 
 public class MainActivity extends AppCompatActivity {
-    // DONE: 15.10.2018 kullanılmayan degıskenlerı ve ımportları temızle
     private List<PhotoItem> images;
-    // DONE: 15.10.2018 Isımlendirmeye dikkat
     private ImageAdapter imageAdapter;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
-     //DONE: _ Merte haber verilecek <<snake_case kebab-case>>
-    //DONE: 15.10.2018 : Paket isimleri ufak harfle başlasın
-    //TODO: databinding e gecileceeeek
-    //DONE: git ignore dosyası androide göre düzenlenecek
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // DONE: 15.10.2018 typo
         progressDialog = new ProgressDialog(MainActivity.this);
-        // DONE: 15.10.2018 Hardcoded string bırakılmayaacaaak
         progressDialog.setMessage(getString(R.string.loading_warning));
         progressDialog.show();
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
@@ -63,11 +53,9 @@ public class MainActivity extends AppCompatActivity {
     private void generateDataList(final List<PhotoItem> images) {
 
         recyclerView = findViewById(R.id.recyclerView);
-        // TODO: 15.10.2018 lambda expression acılacaaaaak
         imageAdapter = new ImageAdapter(images, new ImageAdapter.ItemClickEvent() {
             @Override
             public void onItemClicked(int position) {
-                // DONE: 15.10.2018 Adapterdan buraya kadar aldım. Devamı sende
                 String constructedUrl = "https://farm" + images.get(position).getFarm() + ".staticflickr.com/" + images.get(position).getServer() + "/" + images.get(position).getId() + "_" + images.get(position).getSecret() + ".jpg";
                 String id = images.get(position).getId();
                 Intent intent = new Intent(getApplicationContext(), DisplayActivity.class);

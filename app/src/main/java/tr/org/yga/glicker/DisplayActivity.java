@@ -59,11 +59,6 @@ public class DisplayActivity extends AppCompatActivity {
 
     }
 
-    // DONE: 15.10.2018 Metodun okunabılır olması ıcın comment ekle.
-
-    /*
-    Seçilen fotoğrafı ve contentini ekrana bastırır.
-     */
     private void setImage(String imageContent, String imageUrl) {
         Log.d(TAG, "setImage: setting the image and name to widgets.");
         TextView content = findViewById(R.id.imageContent);

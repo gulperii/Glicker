@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:id="@+id/album_layout">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="photo"
+            type="tr.org.yga.glicker.interestingPhotos.PhotoItem" />
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
+        <variable
+            name="clickEvent"
+            type="tr.org.yga.glicker.adapter.ImageAdapter.ItemClickEvent" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/album_layout">
 
 
-    <ImageView
-        android:id="@+id/thumbnail"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitXY" />
-</RelativeLayout >
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitXY"
+            android:onClick="@{(v) -> clickEvent.onItemClicked(position)}"
+            app:imageUrl="@{photo.imageUrl}"/>
+    </RelativeLayout>
+</layout>
