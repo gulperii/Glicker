@@ -8,12 +8,11 @@ import com.bumptech.glide.Glide;
 public class ImageBindingAdapter {
     @BindingAdapter("imageUrl")
     public static void loadImage(ImageView imageView, String imageUrl) {
-        if (!imageUrl.equals("")) {
             Glide.with(imageView.getContext())
                     .asBitmap()
                     .load(imageUrl)
                     .into(imageView);
         }
 
-    }
+
 }

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View" />
 
         <variable
-            name="photo"
-            type="tr.org.yga.glicker.interestingPhotos.PhotoItem" />
-        <variable
-            name="position"
-            type="java.lang.Integer" />
+            name="photoUrl"
+            type="java.lang.String"/>
+
     </data>
 
     <LinearLayout
@@ -27,7 +26,9 @@
             android:layout_height="0dp"
             android:layout_weight="75"
             android:contentDescription="@string/photo"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:imageUrl="@{photoUrl}"/>
+        />
 
         <TextView
             android:id="@+id/imageContent"

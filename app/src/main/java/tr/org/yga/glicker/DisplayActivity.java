@@ -1,29 +1,30 @@
 package tr.org.yga.glicker;
 
 import android.app.ProgressDialog;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import tr.org.yga.glicker.api.ApiClient;
 import tr.org.yga.glicker.api.ApiInterface;
+import tr.org.yga.glicker.databinding.ActivityDisplayBinding;
 import tr.org.yga.glicker.photoInfo.Response;
 
 public class DisplayActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private static final String TAG = "DisplayActivity";
-
+    private ActivityDisplayBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_display);
+
         Log.d(TAG, "onCreate: started");
         progressDialog = new ProgressDialog(DisplayActivity.this);
         progressDialog.setMessage(getString(R.string.loading_warning));
@@ -63,14 +64,9 @@ public class DisplayActivity extends AppCompatActivity {
         Log.d(TAG, "setImage: setting the image and name to widgets.");
         TextView content = findViewById(R.id.imageContent);
         content.setText(imageContent);
+        binding.setPhotoUrl(imageUrl);
 
-        ImageView image = findViewById(R.id.image_with_content);
-        Glide.with(this)
-                .asBitmap()
-                .load(imageUrl)
-                .into(image);
     }
-
 }
 
 
